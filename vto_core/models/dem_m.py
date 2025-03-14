@@ -21,8 +21,8 @@ class DemoExchange(UUIDpk7):
 
 
 ''' samples
-before DST: 1741035602
-during DST: 
+before DST: 1741035602 (03 March 2025)
+during DST: 1741964552 (14 March 2025)
 '''
 class DemoTestTimestamp(models.Model):
 

@@ -14,9 +14,11 @@ class DemoTestTSList(ListView):
         context = super().get_context_data(**kwargs)
 
         for obj in context['object_list']:
+            # BROKEN
             xch = dtm.fromtimestamp(obj.ts_unix, tz=zi(obj.exchange.tz.identifier))
 
             # in addition to the tz middleware converting the utc field in the model
+            # BROKEN
             utc = dtm.fromtimestamp(obj.ts_unix, tz=zi('UTC'))
 
             # in addition to the tz template tag converting the user tz
