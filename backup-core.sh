@@ -24,8 +24,8 @@ __ddump vto_core.User > data/usr-DEV-$(__ts).json
 # PROD
 # ------------------------------------------------------------------------------
 
-#__pdump vto_core.TZWikiSlug vto_core.TimeZone vto_core.TZAbbreviation \
-#    vto_core.DemoExchange vto_core.DemoTestTimestamp \
-#    > data/tz-DEV-$(__ts).json
+__pdump vto_core.TZWikiSlug vto_core.TimeZone vto_core.TZAbbreviation \
+    vto_core.DemoExchange vto_core.DemoTestTimestamp \
+    > data/tz-$(__ts).json
 
-#__pdump vto_core.User > data/usr-$(__ts).json
+__pdump vto_core.User > data/usr-$(__ts).json

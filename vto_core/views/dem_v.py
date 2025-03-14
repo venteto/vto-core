@@ -9,38 +9,24 @@ class DemoTestTSList(ListView):
     model = DemoTestTimestamp
     template_name = 'time/demo-ts-list.dtl'
 
+    def calc_utc(self, obj):
+        utcv = dtm.fromtimestamp(obj.ts_unix, tz=zi('Etc/UTC'))
+        return utcv.strftime(settings.TSFMT)
+
+    def calc_user_local(self, obj):
+        usrv = dtm.fromtimestamp(obj.ts_unix, \
+            tz=zi(str(self.request.user.timezone.identifier)))
+        return usrv.strftime(settings.TSFMT)
+
+    def calc_exchange_local(self, obj):
+        xchv = dtm.fromtimestamp(obj.ts_unix, tz=zi(obj.exchange.tz.identifier))
+        return xchv.strftime(settings.TSFMT)
+
     def get_context_data(self, **kwargs):
-
         context = super().get_context_data(**kwargs)
-
         for obj in context['object_list']:
-            # BROKEN
-            xch = dtm.fromtimestamp(obj.ts_unix, tz=zi(obj.exchange.tz.identifier))
-
-            # in addition to the tz middleware converting the utc field in the model
-            # BROKEN
-            utc = dtm.fromtimestamp(obj.ts_unix, tz=zi('UTC'))
-
-            # in addition to the tz template tag converting the user tz
+            obj.tsv_utc = self.calc_utc(obj)
             if self.request.user.is_authenticated:
-                usr = dtm.fromtimestamp(obj.ts_unix, \
-                    tz=zi(str(self.request.user.timezone.identifier)))
-
-        context['ts_xch'] = xch.strftime(settings.TSFMT)
-        
-        # in addition to the tz middleware converting the utc field in the model
-        context['tsv_utc'] = utc.strftime(settings.TSFMT)        
-
-        # in addition to the tz template tag converting the user tz
-        if self.request.user.is_authenticated:
-            context['tsv_usr'] = usr.strftime(settings.TSFMT)
-
+                obj.tsv_usr = self.calc_user_local(obj)
+            obj.tsv_xch = self.calc_exchange_local(obj)
         return context
-
-'''
-            timestamp = obj.ts_unix
-            timezone = zi(obj.exchange.tz)
-            datetime_object = dtm.fromtimestamp(timestamp, tz=timezone)
-            formatted_date = dt.strftime("%Y-%m-%d %H:%M:%S %z %Z")
-        context['xch_ts] = formatted_date
-'''
