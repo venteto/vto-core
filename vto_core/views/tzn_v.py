@@ -1,5 +1,5 @@
 from django.views.generic import ListView 
-from .models import TimeZone
+from vto_core.models import TimeZone
 
 class TZList(ListView):
     model = TimeZone

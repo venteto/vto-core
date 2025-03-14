@@ -7,17 +7,8 @@ It also includes a time zones model, and a custom user model which uses the time
 
 The the user portion of the `admin.py` file is mostly copied verbatim from [upstream](https://github.com/django/django/tree/main/django/contrib/auth), and then tweaked to replace the stock `first_name` and `last_name` conventions from with slightly more international options, lightly inspired by the [Cookiecutter Django](https://github.com/cookiecutter/cookiecutter-django/blob/master/{{cookiecutter.project_slug}}/{{cookiecutter.project_slug}}/users/models.py#L27) project.
 
-The GitHub repository for also has a `tz.json` sample fixture in the repo root (for the time zone models only, dumped in a similar manner to the example below).
+The GitHub repository for also has as sample backup script and sample JSON fixture.
 
-```bash
-# for the dev db
-DEBUG=True python manage.py dumpdata --indent=2 \
-    vto_core.TimeZone vto_core.TZAbbreviation > tz.json
-
-# for the prod db
-python manage.py dumpdata --indent=2 vto_core.TimeZone \
-    vto_core.TZAbbreviation > tz.json
-```
 
 ## Disclaimer
 This is just a personal test app, it is not intended for use by anyone else.

@@ -21,44 +21,10 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 
-from .models import TZAbbreviation, TimeZone, User
+from vto_core.models import User
 
 csrf_protect_m = method_decorator(csrf_protect)
 sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())
-
-
-@admin.register(TZAbbreviation)
-class TZAbbrAdmin(admin.ModelAdmin):
-    list_display = [
-        'offset',
-        'abbr',
-        'identifier',
-    ]
-    list_display_links = ['identifier']
-    search_fields = [
-        'identifier',
-        'abbr',
-    ]
-
-@admin.register(TimeZone)
-class TZAdmin(admin.ModelAdmin):
-    autocomplete_fields = [
-        'std',
-        'dst',
-    ]
-    list_display = [
-        'identifier',
-        'tz_type',
-        'src_file',
-        'std',
-        'dst',
-        'aliases',
-    ]
-    search_fields = [
-        'identifier',
-        'std__identifier',
-        'dst__identifier',
-    ]
 
 '''
 @admin.register(Group)
