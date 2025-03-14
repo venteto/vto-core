@@ -11,11 +11,11 @@
         <th>Unix</th>
         <th>UTC</th>
         <th>UTC (v)</th>
-        <th>Exchange Local</th>
         {% if user.is_authenticated %}
             <th>User Local</th>
             <th>User Local (v)</th>
         {% endif %}
+        <th>Exchange Local (v)</th>
     </thead>
     {# date:"Y-m-d (D) H:i:s e (I)" #}
 <tbody>
@@ -27,7 +27,6 @@
              <td>{{ object.ts_utc|utc|date:"Y-m-d H:i e" }}</td> 
              <td>{{ tsv_utc }}</td> {# created manually #}
 
-            <td>{{ ts_xch }}</td>
             {% if user.is_authenticated %}
                 <td>
                     {{ object.ts_utc|localtime|date:"Y-m-d H:i e" }}
@@ -35,6 +34,8 @@
                 </td>
                 <td>{{ tsv_usr }}</td> {# created manually #}
             {% endif %}
+
+            <td>{{ ts_xch }}</td> {# created manually #}
         </tr>
     {% endfor %}
 </tbody>
