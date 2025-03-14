@@ -7,12 +7,12 @@
     <thead>
         <th>Name</th>
         <th>Type</th>
-        <th>Src File</th>
+        <th>Source File</th>
         <th>Aliases</th>
-        <th>STD Offset</th>
-        <th>DST Offset</th>
-        <th>STD Abbr</th>
-        <th>DST Abbr</th>
+        <th>STD</th>
+        <th>DST</th>
+        <th>STD</th>
+        <th>DST</th>
     </thead>
 
 <tbody>
