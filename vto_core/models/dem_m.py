@@ -15,6 +15,7 @@ class DemoExchange(UUIDpk7):
 
     class Meta:
         ordering = ['name_long']
+        verbose_name_plural = 'ZZZ — Demo stock exchanges'
 
     def __str__(self):
         return self.abbr
@@ -37,6 +38,7 @@ class DemoTestTimestamp(models.Model):
 
     class Meta:
         ordering = ['ts_unix']
+        verbose_name_plural = 'ZZZ — Demo test time stamps'
     
     def __str__(self):
         return str(self.ts_unix)

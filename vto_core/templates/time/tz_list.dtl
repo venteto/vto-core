@@ -1,7 +1,13 @@
 {% extends 'base_site.dtl' %}
 {% block title %}TZ List{% endblock %}
 {% block content %}
+
+{# move title context to urlpattern? #}
 <h2>IANA Time Zone List</h2>
+
+<a href="{% url "ts_render_demo" %}">TZ Render Demo</a>
+<br><br>
+{# add row mixin? #}
 
 <table id="jsData" class="display">
     <thead>
